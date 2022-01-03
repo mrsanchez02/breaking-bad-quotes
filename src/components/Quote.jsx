@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const ContenedorFrase = styled.div`
     padding: 3rem;
@@ -41,9 +41,6 @@ const ContenedorFrase = styled.div`
 
 const Quote = ({quote}) => {
 
-    if(Object.keys(quote).length=== 0) return null;
-
-
     return (
         <ContenedorFrase>
             <h2>{quote.quote}</h2>
@@ -52,8 +49,8 @@ const Quote = ({quote}) => {
     )
 }
 
-Quote.prototype = {
-    quote: propTypes.object.isRequired()
+Quote.propTypes = {
+    quote: PropTypes.object.isRequired
 }
 
 export default Quote
