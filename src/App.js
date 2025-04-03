@@ -26,16 +26,35 @@ const Boton = styled.button`
   }
 `;
 
-
+const Box = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+  height: 400px;
+  width: 800px;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+`;
 
 function App() {
 
   const [quote, setQuote] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   
   const queryAPI = async () => {
-    const API = await fetch('https://breakingbadapi.com/api/quote/random?series=Breaking+Bad');
-    const quote = await API.json();
-    setQuote(quote[0]);
+    // setIsLoading(true);
+    try {
+      const API = await fetch('https://api.breakingbadquotes.xyz/v1/quotes');
+      const quote = await API.json();
+      console.log("🚀 ~ queryAPI ~ quote:", quote[0])
+      setQuote(quote[0]);
+    } catch (error) {
+      console.log("🚀 ~ queryAPI ~ error:", error)
+    } finally {
+      setIsLoading(false);
+    }
   }
   
   useEffect(() => {
@@ -45,7 +64,9 @@ function App() {
   return (
     <>
       <Contenedor>
-        <Quote quote={quote}/>
+        <Box>
+          <Quote quote={quote} isLoading={isLoading} />
+        </Box>
         <Boton
           onClick={queryAPI}
         >

@@ -7,9 +7,11 @@ const ContenedorFrase = styled.div`
     border-radius: .5rem;
     background-color: #fff;
     max-width: 800px;
+    max-height: 350px;
     
     @media (min-width: 992px) {
-        margin-top: 10rem;
+        /* margin-top: 5rem;
+        margin-bottom: 5rem; */
     }
 
     h2 {
@@ -43,8 +45,8 @@ const Quote = ({quote}) => {
 
     return (
         <ContenedorFrase>
-            <h2>{quote.quote}</h2>
-            <p>{quote.author}</p>
+            <h2>{quote?.quote}</h2>
+            <p>{quote?.author}</p>
         </ContenedorFrase>
     )
 }
